@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: black-target
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: black-target
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        service: black-target
+    spec:
+      containers:
+      - name: black
+        image: 707015264015.dkr.ecr.us-west-2.amazonaws.com/blue:blue-v1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80

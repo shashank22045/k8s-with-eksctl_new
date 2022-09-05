@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+ name: black-service
+ labels:
+   run: black-service
+spec:
+ ports:
+ - port: 80
+ selector:
+   service: black-target

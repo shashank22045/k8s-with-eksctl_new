@@ -1,0 +1,12 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": [
+                "es:*"
+            ],
+            "Resource": "arn:aws:es:us-west-2:707015264015:domain/k8s-log/*",
+            "Effect": "Allow"
+        }
+    ]
+}

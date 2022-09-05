@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blue-target
+  labels:
+    app: nginx
+    service: blue-target
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: blue-target
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        service: blue-target
+    spec:
+      containers:
+      - name: blue
+        image: nginx
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
